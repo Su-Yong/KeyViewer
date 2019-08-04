@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>KeyViewer</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link href="./key-style.css" rel="stylesheet">
+
+  <script>
+    var ipcRenderer = require('electron').ipcRenderer
+    var keyButton = []
+
+    ipcRenderer.on('down', function (event, message) {
+      console.log('down')
+      keyButton[message].classList.add('key-press')
+    })
+
+    ipcRenderer.on('up', function (event, message) {
+      console.log('up')
+      keyButton[message].classList.remove('key-press')
+    })
+
+    window.onload = function () {
+      keyButton[0] = document.getElementById('shift')
+      keyButton[1] = document.getElementById('z')
+      keyButton[2] = document.getElementById('r')
+      keyButton[3] = document.getElementById('up')
+      keyButton[4] = document.getElementById('ctrl')
+      keyButton[5] = document.getElementById('alt')
+      keyButton[6] = document.getElementById('left')
+      keyButton[7] = document.getElementById('down')
+      keyButton[8] = document.getElementById('right')
+    }
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <div id="up" class="key" style="margin-left: 50vh;">
+      W
+    </div>
+  </div>
+  <div class="container">
+    <div id="left" class="key">
+      A
+    </div>
+    <div id="down" class="key">
+      S
+    </div>
+    <div id="right" class="key">
+      D
+    </div>
+  </div>
+  <div style="position: fixed; top: 4vh; right: 4vh;">
+    <i id="set-left" class="material-icons button" onclick="ipcRenderer.send('action', 'set-left')">
+      transit_enterexit
+    </i>
+    <i id="close" class="material-icons button" onclick="ipcRenderer.send('action', 'close')">
+      close
+    </i>
+  </div>
+</body>
+
+</html>

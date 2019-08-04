@@ -1,0 +1,59 @@
+{
+  "name": "keyviewer",
+  "version": "1.0.0",
+  "description": "simple kartrider keyviewer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "electron-packager . KeyViewer"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Su-Yong/KeyViewer.git"
+  },
+  "author": "Su-Yong",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Su-Yong/KeyViewer/issues"
+  },
+  "homepage": "https://github.com/Su-Yong/KeyViewer#readme",
+  "dependencies": {
+    "iohook": "^0.4.6"
+  },
+  "iohook": {
+    "targets": [
+      "node-64",
+      "electron-53"
+    ],
+    "platforms": [
+      "win32",
+      "darwin"
+    ],
+    "arches": [
+      "x64",
+      "ia32"
+    ]
+  },
+  "devDependencies": {
+    "asar": "^1.0.0",
+    "electron": "^4.1.0",
+    "electron-packager": "^13.1.1"
+  },
+  "build": {
+    "productName": "KartRider Key Viewer",
+    "appId": "suyong.keyviewer",
+    "win": {
+      "target": [
+        "portable"
+      ]
+    },
+    "portable": {
+      "artifactName": "KartriderKeyViewer.exe"
+    },
+    "directories": {
+      "output": "output",
+      "app": "",
+      "buildResources": "output/buildResources"
+    }
+  }
+}
